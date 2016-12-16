@@ -1,0 +1,13 @@
+/*admin-menu visibility issue - adding margin to fixed navbar*/
+#admin-menu {
+  z-index: 9999;
+}
+#page #pageinner #main {
+  margin-top: 150px;
+}
+body {
+  background-color: #F4F6F9 !important;
+}
+footer {
+  background-color: #fff;
+}

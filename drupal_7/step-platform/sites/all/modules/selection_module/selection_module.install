@@ -1,0 +1,298 @@
+<?php
+
+
+function selection_module_install() {
+  
+  $t = get_t();
+
+  // We define the node type as an associative array.
+  $selection_module = array(
+    'type' => 'selection_module',
+    'name' => $t('Selection Content Type'),
+   
+    'base' => 'node_content',
+    'description' => $t('This is an example node type with a few fields.'),
+    'title_label' => $t('Selection Title'),
+	'custom' => TRUE,
+  );
+
+
+  $content_type = node_type_set_defaults($selection_module);
+
+  //This is optional
+ // node_add_body_field($content_type, $t('Selection Description'));
+
+  // Save the content type
+  //node_type_save($content_type);
+
+
+  // Load the instance definition for our content type's body
+  //$body_instance = field_info_instance('node', 'body', 'selection_module');
+
+
+  // Add our example_node_list view mode to the body instance display by
+  // instructing the body to display as a summary
+  
+
+  // Save our changes to the body field instance.
+  //field_update_instance($body_instance);
+
+  // Create all the fields we are adding to our content type.
+  foreach (_selection_module_installed_fields() as $field) {
+    field_create_field($field);
+  }
+
+  // Create all the instances for our fields.
+  foreach (_selection_module_installed_instances() as $instance) {
+    $instance['entity_type'] = 'node';
+    $instance['bundle'] = $selection_module['type'];
+    field_create_instance($instance);
+  }
+}
+
+/**
+ * Implements hook_uninstall().
+ *
+ * This hook is called when the user not only has disabled the module,
+ * but also uninstalls it from the 'uninstall' tab in the module page.
+ *
+ */
+
+ function selection_module_uninstall() {
+  
+  // module was enabled.  Simple selects still use db_query().
+  $sql = 'SELECT nid FROM {node} n WHERE n.type = :type';
+  $result = db_query($sql, array(':type' => 'selection_module'));
+  $nids = array();
+  foreach ($result as $row) {
+    $nids[] = $row->nid;
+  }
+
+  // Delete all the nodes at once
+  node_delete_multiple($nids);
+
+  // Loop over each of the fields defined by this module and delete
+  foreach (array_keys(_selection_module_installed_fields()) as $field) {
+    field_delete_field($field);
+  }
+
+  // Loop over any remaining field instances attached to the selection_module
+  $instances = field_info_instances('node', 'selection_module');
+  foreach ($instances as $instance_name => $instance) {
+    field_delete_instance($instance);
+  }
+
+  // Delete our content type
+  node_type_delete('selection_module');
+
+  // Purge all field infromation
+  field_purge_batch(1000);
+}
+
+/**
+ * Returns a structured array defining the fields created by this content type.
+ *
+ * This is factored into this function so it can be used in both
+ * selection_module_install() and selection_module_uninstall().
+ *
+ */
+
+ function _selection_module_installed_fields() {
+  $t = get_t();
+  return array(
+  
+  // Field 1: TEI document (should be XML)
+    /* 'selection_module_tei' => array(
+      'field_name' => 'selection_module_tei',
+      'cardinality' => 3,
+	   'locked' => TRUE,
+      'type'        => 'text',
+      'settings'    => array(
+        'max_length' => 60,
+      ),
+    ), */
+	
+	// Field 2: Figure and Graphics (image)
+    'selection_module_figures' => array(
+      'field_name' => 'selection_module_figures',
+	   'locked' => TRUE,
+      'type'       => 'image',
+      'cardinality' => 1,
+    ),
+	
+	// Field 3: Selection image (image)
+    'selection_module_selection' => array(
+      'field_name' => 'selection_module_selection',
+	   'locked' => TRUE,
+      'type'       => 'image',
+      'cardinality' => 1,
+    ),
+	
+	// Field 4: highlight (longtext)
+	
+    'selection_module_highlights' => array(
+      'field_name'  => 'selection_module_highlights',
+	  'locked' => TRUE,
+      'cardinality' => 1,
+      'type'        => 'text_long',
+    ),
+	 
+	// field 5: xml_test (xml)
+	
+	'selection_module_xml_test' => array(
+	'field_name' => 'selection_module_xml_test',
+	'locked' => TRUE,
+	'cardianality' => 1,
+	'type' => 'xml_field_xml',
+	)
+	
+  );
+  
+}
+
+/**
+ * Returns a structured array defining the instances for this content type.
+ *
+ * The instance lets Drupal know which widget to use to allow the user to enter
+ * data and how to react in different view modes.  
+ */
+ 
+function _selection_module_installed_instances() {
+  $t = get_t();
+  return array(
+    // 1: TEI Textfield
+    /* 'selection_module_tei' => array(
+      'field_name' => 'selection_module_tei',
+      'label'       => $t('TEI Textfield'),
+	  'locked' => TRUE,
+      'widget'      => array(
+        'type'    => 'text_textfield',
+      ),
+      'display' => array(
+        'example_node_list' => array(
+          'label' => 'hidden',
+          'type' => 'selection_module_tei',
+        ),
+      ),
+    ), */
+	
+	//2: Figures & Graphics
+    'selection_module_figures' => array(
+      'field_name'  => 'selection_module_figures',
+      'label' => $t('Figures & Graphics'),
+	  'locked' => TRUE,
+      //'type'        => 'text',
+      'widget'      => array(
+        'type'    => 'image_image',
+		'weight'  => 2.10,
+      ),
+      'display' => array(
+        'example_node_list' => array(
+          'label' => 'hidden',
+          'type' => 'hidden',
+        ),
+      ),
+    ),
+	
+	//3:  selection_module_selection
+	'selection_module_selection' => array(
+      'field_name'  => 'selection_module_selection',
+      'label' => $t('Selection images'),
+	  'locked' => TRUE,
+      'widget'      => array(
+        'type'    => 'image_image',
+		'weight'  => 2.15,
+      ),
+      'display' => array(
+        'example_node_list' => array(
+          'label' => 'hidden',
+          'type' => 'hidden',
+        ),
+      ),
+    ),
+	
+	//4: selection_module_highlights
+    'selection_module_highlights' => array(
+      'field_name'  => 'selection_module_highlights',
+      'label'       => $t('Highlights'),
+	  'locked' => TRUE,
+      'required'    => FALSE,
+      'widget' => array(
+        'type'    => 'text_textfield',
+        'weight'  => 2.10,
+      ),
+      'display' => array(
+        'example_node_list' => array(
+          'label' => 'hidden',
+          'type' => 'selection_module_highlights',
+        ),
+      ),
+    ),
+	
+	//field 5: selection_module_xml_test (xml)
+	'selection_module_xml_test' => array(
+	'field_name'  => 'selection_module_xml_test',
+      'label'       => $t('TEI Document'),
+	  'locked' => TRUE,
+      'required'    => FALSE,
+      'widget' => array(
+        'active' => 0,
+        'module' => 'xml_field',
+        'settings' => array(),
+        'type' => 'xml_field_text',
+        'weight' => '32',
+      ),
+	  'default_value' => array(
+        0 => array(
+          'xml' => '<?xml version="1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        
+      </titleStmt>
+      
+      <publicationStmt>
+        
+      </publicationStmt>
+      
+      <sourceDesc>
+        
+      </sourceDesc>
+    </fileDesc>
+    
+    <revisionDesc>
+      
+    </revisionDesc>
+  
+  </teiHeader>
+  
+  <text>
+    <front>
+    
+    </front>
+
+    <body>
+      
+    </body>
+  </text>
+
+</TEI>',
+        ),
+      ),
+	  
+      'display' => array(
+        'example_node_list' => array(
+          'label' => 'above',
+          'module' => 'xml_field',
+          'settings' => array(),
+          'type' => 'xml_field_raw',
+          'weight' => '1',
+        ),
+      ),
+	),
+	
+	
+	
+  );
+}

@@ -1,0 +1,23 @@
+/**
+* A fall-back mechanism, i.e. a style that is applied to
+* those elements, that the document might contain but
+* none of the following rules describes. NB! this must take
+* place before any other styles are applied.
+*
+* kaarel kaljurand
+* Tue May  6 17:54:55 EEST 2003
+*/
+
+text * {
+	display: inline;
+	border: dashed 3px #ff3399;
+}
+
+text *:active {
+	background-color: teal;
+}
+
+tei\.2 {
+	display: block;
+/*	width: 50em; */
+}

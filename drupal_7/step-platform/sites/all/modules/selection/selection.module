@@ -1,0 +1,75 @@
+<?php
+
+/**
+ * @file
+ * Module that processes functions for selections inside STEP.
+ */
+ 
+/**
+ * Implements hook_help.
+ *
+ * Displays help and module information.
+ *
+ * @param path 
+ *   Which path of the site we're using to display help
+ * @param arg 
+ *   Array that holds the current path as returned from arg() function
+*/
+function selection_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#selection":
+	  $message = '<h2>' . t("STEP Selection Configuration") . '</h2>' . '<p>' . t("Configuration options for this module dictate the workflow process and which elements continue beyond perfected states.") . '</p>';
+      return $message;
+      break;
+  }
+}
+
+/**
+ * Implements hook_node_prepare.
+ *
+ * Removes TEI XML elements from XML field before sending to browser. Does not modify previous revision of node.
+ * Works in conjunction with Workbench Moderation States and configuration rules to determine which elements to remove after each perfected state.
+ *
+*/
+function selection_form_selection_node_form_alter(&$form, &$form_state, $form_id) {
+	//debug($form, '$form contents:', TRUE);
+	
+	if ($form_id == "selection_node_form") {
+		$xml_language = field_language("node", $form["#node"], "field_tei_document");
+		
+		$node = $form_state['node'];
+		
+		if (!isset($node->nid) || isset($node->is_new)) {
+    		$xml = xml_field_xml($form["field_tei_document"][$xml_language][0]["xml"]["#default_value"]);
+  		} else {
+  			$xml = xml_field_xml($form["#node"]->field_tei_document[$xml_language][0]["xml"]);	
+		}
+		//debug(_remove_xml($xml), '$form contents:', TRUE);
+		$xml = _remove_xml($xml);
+	}
+}
+
+/**
+ * Internal function
+ *
+ * Removes XML elements from the XML object.
+*/
+function _remove_xml($xml) {
+	$elements = array(
+		"subst",
+		"del",
+	);
+	
+	$newXML = new DOMDocument();
+	$newXML->loadXML($xml->asXML());
+		
+	foreach ($elements as $element) {
+		$matches = $newXML->getElementsByTagName($element);
+		for ($i = $matches->length - 1; $i > -1; $i--) {
+			$match = $matches->item($i);
+			$match->parentNode->removeChild($match);
+		}
+	}
+	
+	return $newXML->saveXML();
+}

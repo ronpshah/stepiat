@@ -1,0 +1,22 @@
+function step_source_schema() {
+  $schema['step_source'] = array (
+    'description' => 'The main schema for our Standard Source entity.',
+    'fields' => array(
+      'pid' => array(
+        'description' => 'Primary key for our table of standard source entities.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ),
+      'note' => array(
+        'description' => 'The actual note',
+        'type' => 'varchar',
+        'length' => '255',
+        'not null' => TRUE
+      ),
+    ),
+    'primary key' => array('pid'),
+  );
+  
+  return $schema;
+}

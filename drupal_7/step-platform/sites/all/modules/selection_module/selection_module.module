@@ -1,0 +1,81 @@
+<?php
+/**
+ * Implements hook_menu().
+ *
+ * We are providing a default page to illustrate the use of our custom node view
+ * mode that will live at http://example.com/?q=examples/selection_module
+ */
+
+function selection_module_menu() {
+  $items = array();
+  $items['admin/config/workflow/selection_workflow'] = array(
+    'title' => 'Selection Workflow',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('selection_module_form'),
+    'description' => 'Workflow rules for selection module',
+    'access arguments' => array('administer selection module'),
+    'file' => 'selection_module.admin.inc',
+  );
+  return $items;
+}
+
+function selection_module_form_alter(&$form, &$form_state, $form_id) {
+	//debug($form, '$form contents:', TRUE);
+
+   // drupal_set_message('this is: '.$form_id);  // print form ID to messages
+   // drupal_set_message(print_r($form, TRUE));  // print array to messages
+    
+	//if ($form_id == "selection_module_node_form") {
+       if ($form_id == "selection_module_node_form") {
+  
+		$xml_language = field_language("node", $form["#node"], "selection_module_xml_test");
+	//	drupal_set_message("hello");
+		$node = $form_state['node'];
+		
+		if (!isset($node->nid) || isset($node->is_new)) {
+    		$xml = xml_field_xml($form["selection_module_xml_test"][$xml_language][0]["xml"]["#default_value"]);
+  		} else {
+  			$xml = xml_field_xml($form["#node"]->selection_module_xml_test[$xml_language][0]["xml"]);	
+		}
+		//debug(_remove_xml($xml), '$form contents:', TRUE);
+                //drupal_set_message("passing the XML to _remove_xml(xml) function");
+		
+                $xml_output = _remove_xml($xml);
+                //drupal_set_message("this is output: ");
+                $test_xml = new DOMDocument();
+                $test_xml->loadXML($xml_output);
+                //drupal_set_message(print_r($test_xml,TRUE));
+	}
+}
+
+
+function _remove_xml($xml) {
+	$elements = array(
+		"subst",
+		"del",
+	);
+	
+        //drupal_set_message(print_r($elements, TRUE));
+	$newXML = new DOMDocument();
+	$newXML->loadXML($xml->asXML());
+	
+        //drupal_set_message('newXML in _remove_xml function'.print_r($newXML, TRUE));
+        
+	foreach ($elements as $element) {
+            
+		$matches = $newXML->getElementsByTagName($element);
+               // drupal_set_message('Match: '.print_r($matches, TRUE));
+		for ($i = $matches->length - 1; $i > -1; $i--) {
+			$match = $matches->item($i);
+         //               drupal_set_message(print_r($match, TRUE).' to be removed');
+			//$newXML->parentNode->removeChild($match);
+                       // drupal_set_message($match);
+                        $match = $matches->item($i);
+			$match->parentNode->removeChild($match);
+		}
+	}
+        //drupal_set_message("after operation");
+       // drupal_set_message(print_r($newXML,TRUE));
+	
+        return $newXML->saveXML();
+}

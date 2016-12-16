@@ -1,0 +1,76 @@
+/*
+* CSS stylefile for TEI
+* TEI header
+*
+* kaarel kaljurand
+* Mon Apr  8 20:02:14 EET 2002
+*/
+
+/* DISPLAY: BLOCK */
+teiHeader,
+fileDesc,
+publicationStmt,
+publicationStmt authority,
+publicationStmt pubPlace,
+publicationStmt date,
+publicationStmt availability,
+respStmt,
+respStmt resp,
+respStmt name,
+bibl,
+bibl title,
+bibl publisher,
+bibl author,
+titleStmt,
+titleStmt title,
+titleStmt principal,
+extent,
+sourceDesc,
+encodingDesc, projectDesc, samplingDecl, editorialDecl,
+tagsDecl, correction, hyphenation, interpretation, quotation, segmentation {
+	display: block; 
+	margin-left: 1em;;
+	margin-right: 0;
+	margin-top: 0.2em;
+	margin-bottom: 0.1em;
+	padding-left: 0;
+	padding-right: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+	border-left: 1px dotted black;
+	border-right: none;
+	border-top: none;
+	border-bottom: none;
+	white-space: normal;
+	font-family: inherit;
+	color: black;
+}
+
+teiHeader {
+	color: black;
+	font-family: Courier, monospace;
+	/* background-color: #cce6f3; */
+	background-color: rgb(255,204,255);
+}
+
+fileDesc {
+	border: solid olive 2px;
+}
+
+encodingDesc {
+	border: solid olive 2px;
+}
+
+/* DISPLAY: LIST-ITEM */
+interpretation p, tagUsage {
+	display: list-item;
+	color: black;
+	list-style-type: disc;
+	/*list-style-position: outside;*/
+	list-style-position: inside;
+	border: none;
+}
+
+tagUsage:before {
+	content: attr(gi) '=' attr(occurs);
+}

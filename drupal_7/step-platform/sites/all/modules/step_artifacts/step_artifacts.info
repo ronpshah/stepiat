@@ -1,0 +1,10 @@
+name = Step Artifacts
+description = The artifacts base entity.
+core = 7.x
+package = STEP
+dependencies[] = field
+files[] = step_test.test
+configure = admin/structure/step_artifacts/manage
+
+; Information added by drupal.org packaging script on 2012-10-19
+project = "STEP"

@@ -1,0 +1,15 @@
+name = CodeMirror XML Widget
+description = Adds a CodeMirror XML widget for use on XML fields.
+package = Other
+version = 7.x-1.0
+core = 7.x
+
+dependencies[] = xml_field
+dependencies[] = libraries
+
+; Information added by drupal.org packaging script on 2013-03-29
+version = "7.x-1.6"
+core = "7.x"
+project = "xml_field"
+datestamp = "1364517318"
+

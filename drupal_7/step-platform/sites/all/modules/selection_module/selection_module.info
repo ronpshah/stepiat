@@ -1,0 +1,14 @@
+name = Selection Module
+description = Demonstrates a custom content type and uses the field api.
+package = Example modules(IAT)
+core = 7.x
+dependencies[] = image
+dependencies[] = xml_field
+dependencies[] = media
+files[] = selection_module.test
+
+version = "7.x-1.x-dev"
+core = "7.x"
+
+
+

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Edit Page | STEP DEVELOPMENT</title>
+
+	<link rel="icon" type="image/png" href="http://iupui.edu/~stepiat/platform/img/favicon.png" sizes="32x32">
+	
+	<link rel="stylesheet" href="../../../../../../css/style-import.css">
+
+	<link rel="stylesheet" href="../../../../../../css/normalize.min.css">
+	<link rel="stylesheet" href="../../../../../../css/animate.min.css">
+	<link rel="stylesheet" href="../../../../../../css/flickity.min.css">
+	<link rel="stylesheet" href="../../../../../../css/styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!--File Upload-->
+	<link rel="stylesheet" href="../../../../../../sites/all/libraries/step/css/file_upload/ssi-uploader.css"/>
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+<style>
+    tab1 { padding-left: 3em; }
+    tab2 { padding-left: 6em; }
+    tab3 { padding-left: 9em; }
+    tab4 { padding-left: 12em; }
+	tab5 { padding-left: 15em; }
+    
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+   //this will be triggered when the second button was clicked
+   $("#tab1").click(function(){
+   //this will redirect us in new tab
+      window.open("teiHeader.html", '_blank');
+   });
+});
+
+</script>
+</head>
+<body id="edit_page">
+<div id="wrapper">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="row">
+			<div class="header-nav-wrapper">
+				<div class="logo">
+					<a href="http://step-iat.iupui.edu/platform/"><img src="../../../../../../img/STEP Final Logo.png" alt="STEP LOGO"></a>
+				</div>
+				<div class="primary-nav-wrapper">
+					<nav>
+					
+						<ul class="primary-nav">
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#intro">About Us</a></li>
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#team">our tools</a></li>
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#articles">Contact Us</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="navicon">
+					<a class="nav-toggle" href="#"><span></span></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+<div id="container">
+
+
+	<div class="tabs">
+
+	    <input type="radio" name="tabs" id="tab1" checked="">
+	    <label for="tab1">
+	        <i class="icon icon-File"></i><span>Import</span>
+	    </label>
+
+	    <input type="radio" name="tabs" data-toggle="modal" data-target="#format_popup" id="tab2">
+	    <label for="tab2">
+	        <i class="icon icon-UploadCLoud"></i><span>Format</span>
+	    </label>
+
+	    <input type="radio" name="tabs" id="tab3">
+	    <label for="tab3">
+	        <i class="icon icon-File"></i><span>Validate</span>
+	    </label>
+			    <input type="radio" name="tabs" id="tab4">
+	    <label for="tab4">
+	        <i class="icon icon-File"></i><span>Symbols</span>
+	    </label>
+
+	    <input type="radio" name="tabs" id="tab5">
+	    <label for="tab5">
+	        <i class="icon icon-UploadCLoud"></i><span>Highlight</span>
+	    </label>
+
+	    <input type="radio" name="tabs" id="tab6">
+	    <label for="tab6">
+	        <i class="icon icon-File"></i><span>Save</span>
+	    </label>
+		
+		<input type="radio" name="tabs" id="tab7">
+	    <label for="tab7">
+	        <i class="icon icon-File"></i><span>Export</span>
+	    </label>
+<!-- Trigger the modal with a button -->
+<!--<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button> -->
+
+<!-- Import Modal -->
+<div id="format_popup" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Format</h4>
+      </div>
+      <div class="modal-body">
+        <p>Formatting will delete all the highlighted regions and comments associated with them</p>
+		<p>Format anyway ?</p>
+		<button type="button" class="btn btn-default" data-dismiss="modal">Yes</button>
+		<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+	    <!--<div id="tab-content1" class="tab-content">
+	        <h2>Tab-content1</h2>
+	    </div> <!-- #tab-content1 -->
+		
+		<!--<div id="tab-content2" class="tab-content">
+	        <h2>Tab-content2</h2>
+	    </div> <!-- #tab-content2 -->
+		
+		<div id="tab-content3" class="tab-content">
+	        <h3>Please wait while the document is been validated...</h3>
+	    </div> <!-- #tab-content3 -->
+		
+	    <div id="tab-content4" class="tab-content">
+	        <h2>Tab-content4</h2>
+	    </div> <!-- #tab-content4 -->
+		
+		<div id="tab-content5" class="tab-content">
+	        <h2>Tab-content5</h2>
+	    </div> <!-- #tab-content5 -->
+		
+		<div id="tab-content6" class="tab-content">
+	        <h2>Tab-content6</h2>
+	    </div> <!-- #tab-content6 -->
+		
+		<div id="tab-content7" class="tab-content">
+	        <h2>Tab-content7</h2>
+	    </div> <!-- #tab-content7 -->
+		
+	</div> <!-- .tabs -->
+	<div class="text_editor"> <!-- Editor -->
+	<div class="transcript_img"><img src="../../../../../../img/test_transcript.png" alt="IU logo"></div>
+	<div class="tei_editor"><textarea>XML code goes here</textarea></div>
+	</div> <!-- Editor Ends -->
+</div>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer-branding">
+					<img class="footer-branding-logo" src="../../../../../../img/iu_logo.png" alt="IU logo">
+					<p><a href="https://www.iu.edu/copyright/index.html">Copyright</a> © 2016 The Trustees of <a href="https://www.iu.edu/">Indiana University</a></p>
+				</div>
+				<div class="footer-branding">
+					<img class="humanities-logo" src="../../../../../../img/Humanities.png" alt="Humanities logo">
+				</div>
+				
+				<div class="footer-nav">
+					<ul class="footer-primary-nav">
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#intro">About Us</a></li>
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#">Terms & Conditions</mark></a></li>
+						<li><a href="http://liberalarts.iupui.edu/privacy/" target="_blank">Privacy Policy</a></li>
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#articles">Contact Us</a></li>
+						<li><a href="#">FAQs</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</footer>
+	</div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<!-- file upload related -->
+
+<script src="../../../../../../sites/all/libraries/step/js/file_upload/ssi-uploader.js"></script>
+
+<script>
+    var notifyOptions = {
+        iconButtons: {
+            className: 'fa fa-question about',
+            method: function (e, modal) {
+                ssi_modal.closeAll('notify');
+                var btn = $(this).addClass('disabled');
+                ssi_modal.dialog({
+                    onClose: function () {
+                        btn.removeClass('disabled')
+                    },
+                    onShow: function () {
+                    },
+                    okBtn: {className: 'btn btn-primary btn-sm'},
+                    title: 'ssi-modal',
+                    content: '',
+                    sizeClass: 'small',
+                    animation: true
+                });
+            }
+        }
+    };
+    $('#ssi-upload').ssi_uploader({
+        url: 'uploadAction.php',
+        maxFileSize: 6,
+        allowed: ['jpg', 'gif', 'txt', 'png', 'pdf']
+    });
+    $('#ssi-upload3').ssi_uploader({url: 'uploadAction.php', dropZone: false});
+    $('#ssi-upload4').ssi_uploader({url: 'uplodadAction.php', dropZone: false, allowed: ["pdf"]});
+</script>
+	
+</body>
+</html>

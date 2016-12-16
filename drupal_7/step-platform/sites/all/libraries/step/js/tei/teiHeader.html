@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Import TEI Header | STEP DEVELOPMENT</title>
+
+	<link rel="icon" type="image/png" href="http://iupui.edu/~stepiat/platform/img/favicon.png" sizes="32x32">
+	
+	<link rel="stylesheet" href="../../../../../../css/style-import.css">
+
+	<link rel="stylesheet" href="../../../../../../css/normalize.min.css">
+	<link rel="stylesheet" href="../../../../../../css/animate.min.css">
+	<link rel="stylesheet" href="../../../../../../css/flickity.min.css">
+	<link rel="stylesheet" href="../../../../../../css/styles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+	<!--File Upload-->
+	<link rel="stylesheet" href="../../../../../../sites/all/libraries/step/css/file_upload/ssi-uploader.css"/>
+
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+<style>
+    tab1 { padding-left: 3em; }
+    tab2 { padding-left: 6em; }
+    tab3 { padding-left: 9em; }
+    tab4 { padding-left: 12em; }
+	tab5 { padding-left: 15em; }
+    
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$(".show1").hide();
+	$(".file").hide();
+		$(".file1").hide();
+			$(".file2").hide();
+				$(".file3").hide();
+	$(".lang").hide();
+	$(".lang1").hide();
+	$(".show_hide").show();
+		$(".show_hide1").show();
+	$(".show_hide2").show();
+	$(".show_hide3").show();
+
+   $('.show_hide').toggle(function(){
+       $("#plus").text("-");
+       $(".file").slideDown();
+       
+   },function(){
+       $("#plus").text("+");
+       $(".file").slideUp();
+   });
+   $('.show_hideLang').toggle(function(){
+       $(".show_hideLang").text("-");
+       $(".lang").slideDown();
+       
+   },function(){
+       $(".show_hideLang").text("+");
+       $(".lang").slideUp();
+   });
+      $('.show_hide1').toggle(function(){
+       $("#plus1").text("-");
+       $(".file1").slideDown();
+       
+   },function(){
+       $("#plus1").text("+");
+       $(".file1").slideUp();
+   });
+         $('.show_hide2').toggle(function(){
+       $("#plus2").text("-");
+       $(".file2").slideDown();
+       
+   },function(){
+       $("#plus2").text("+");
+       $(".file2").slideUp();
+   });
+         $('.show_hide3').toggle(function(){
+       $("#plus3").text("-");
+       $(".file3").slideDown();
+       
+   },function(){
+       $("#plus3").text("+");
+       $(".file3").slideUp();
+   });
+    $('.show_hideLang1').toggle(function(){
+       $("#plusLang1").text("-");
+       $(".lang1").slideDown();
+       
+   },function(){
+       $("#plusLang1").text("+");
+       $(".lang1").slideUp();
+   });
+    $("button.hidden1").click(function(){
+        
+        var title=$('#title').val();
+        var publicationStmt="";
+		var msIdentifier="";
+		var handNote="";
+		var provenance="";
+		var language="";
+		$(".hidden1").hide();
+		$('.title').html($('#title').val());
+		$('.publicationStmt').html($('#publicationStatement').val());
+		$('.sourceDescription').html($('#sourceDescription').val()); //added extra
+		/*$('.msIdentifier').html($('#msIdentifier').val());
+		$('.handNote').html($('#handNote').val());
+		$('.provenance').html($('#provence').val());*/
+		$('.language').html($('#language').val());
+		$(".show1").show();
+		//$('.title').html($('#title').val());
+	   //var txt1 = "&lt;teiHeader&gt;<br>&lt;title&gt;"+title+"&lt;/title&gt;<br>";
+	   //var txt2 = "&lt;name&gt;"+name+"&lt;/name&gt;<br>&lt;/teiHeader&gt;";      
+    //$("body").append(txt1); 
+    });
+	    $(".hidden2").click(function(){
+        $(".hidden1").show();
+		$(".show1").hide();
+    });
+});
+
+</script>
+</head>
+<body>
+<div id="wrapper">
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="row">
+			<div class="header-nav-wrapper">
+				<div class="logo">
+					<a href="http://step-iat.iupui.edu/platform/"><img src="../../../../../../img/STEP Final Logo.png" alt="STEP LOGO"></a>
+				</div>
+				<div class="primary-nav-wrapper">
+					<nav>
+					
+						<ul class="primary-nav">
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#intro">About Us</a></li>
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#team">our tools</a></li>
+							<li><a href="http://www.iupui.edu/~stepiat/platform/#articles">Contact Us</a></li>
+						</ul>
+					</nav>
+				</div>
+				<div class="navicon">
+					<a class="nav-toggle" href="#"><span></span></a>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+<div id="container">
+
+
+	<div class="tabs">
+
+	    <input type="radio" name="tabs" id="tab1" checked="">
+	    <label for="tab1">
+	        <i class="icon icon-File"></i><span>Import</span>
+	    </label>
+
+	    <input type="radio" name="tabs" id="tab2">
+	    <label for="tab2">
+	        <i class="icon icon-UploadCLoud"></i><span>File Upload</span>
+	    </label>
+
+	    <input type="radio" name="tabs" id="tab3">
+	    <label for="tab3">
+	        <i class="icon icon-File"></i><span>Custom</span>
+	    </label>
+
+	    <div id="tab-content1" class="tab-content">
+	        <h2>Import</h2>
+	        <h3>Importing a TEI Header</h3>
+			<p>We have provided two ways to import a TEI Header - </p> 
+		<input type="radio" name="buttons" id="button1">
+	    <label for="tab2" class="uploadbuttons">
+	      <span>File Upload</span>
+	    </label>
+			<p>You can import an XML File which contains the TEI Header. For now, We support only XML Format. </p> 
+				    <input type="radio" name="buttons" id="button2">
+	    <label for="tab3" class="uploadbuttons">
+	       <span>Custom</span>
+	    </label>
+			<p>A customized form has been provided for you to fill in the tags. This automatically generates an XML file for you.</p>
+	    </div> <!-- #tab-content1 -->
+
+	    <div id="tab-content2" class="tab-content">
+	        <h3>File Upload</h3>
+	        <div class = "row">
+			<div class = "col-lg-6">
+          			<input type="file" multiple id="ssi-upload3"/>
+          			<p> Please upload Your Trascript Document. Supported Formats : JPG, JPEG </p>
+			</div>
+			<div class = "col-lg-6">
+				<input type="file" multiple id="ssi-upload4"/>
+          			<p> Please upload Your TEI Document. Supported Formats : TXT, PDF, XML </p>
+			</div>
+		</div>
+	    </div> <!-- #tab-content2 -->
+
+	    <div id="tab-content3" class="tab-content">
+	        
+	        <h3>Custom</h3>
+	        <!-- -->
+
+		<h2 class="hidden1">STEP form</h2>
+
+		<div class="hidden1">
+		
+		<a href="#" class="show_hide" id="plus">+</a>File Description<br><br>
+		
+		<span class="file">
+		
+		<tab1><a href="#" class="show_hide1" id="plus1">+</a>TitleStatement<br><br></tab1>
+		<span class="file1">
+		<tab2><input type="text" id="title" placeholder="Title"><br><br></tab2>
+		</span>
+		
+		<tab1><a href="#" class="show_hide2" id="plus2">+</a>Publication Statement<br><br></tab1>
+		<span class="file2">
+		<tab2><input type="text" id="publicationStatement" placeholder="Publication Statement"><br><br></tab2>
+		</span>
+		
+		
+		<tab1><a href="#" class="show_hide3" id="plus3">+</a>Source Description<br><br></tab1>
+		<span class="file3">
+		<tab2><input type="text" id="sourceDescription" placeholder="Source Description"><br><br></tab2>
+		<!--
+		<tab2>Ms Description<br><br></tab2>
+		<tab3>Ms Identifier: <input type="text" id="msIdentifier"><br><br></tab3>
+		<tab3>Physical description<br><br></tab3>
+		<tab4>Hand description: <br><br></tab4>
+		<tab5>Hand Note: <input type="text" id="handNote"><br><br></tab5>
+		<tab3>History<br><br></tab3>
+		<tab4>Provenance: <input type="text" id="provence"><br><br></tab4>-->
+		</span>
+		</span>
+		
+		<a href="#" class="show_hideLang" id="plus">+</a>Profile Description<br><br>
+		
+		<span class="lang">
+		<tab1><a href="#" class="show_hideLang1" id="plusLang1">+</a>Language usage<br><br></tab1>
+		<span class="lang1">
+		<tab2><input type="text" id="language" placeholder="Language"><br><br></tab2>
+		</span>
+		</span>
+		<br>
+		<button class="ssi-button success hidden1">Convert to XML</button>
+		</div>
+		<div class="show1">
+		&lt;teiHeader&gt;<br>
+			&lt;fileDesc&gt;<br>
+			  &lt;titleStmt&gt;<br>
+				&lt;title&gt;<span class="title"></span>&lt;/title&gt;<br>
+			  &lt;/titleStmt&gt;<br>
+			  &lt;publicationStmt&gt;<br>
+				&lt;p&gt;<span class="publicationStmt"></span>&lt;/p&gt;<br>
+			  &lt;/publicationStmt&gt;<br>
+			  &lt;sourceDesc&gt;<br>
+				&lt;p&gt;<span class="sourceDescription"></span>&lt;/p&gt;<br> <!-- added extra -->
+				
+				<!--&lt;msDesc&gt;<br>
+				  &lt;msIdentifier&gt;<span class="msIdentifier"></span>&lt;/msIdentifier&gt;<br>
+				  &lt;physDesc&gt;<br>
+					&lt;handDesc&gt;<br>
+				  &lt;handNote&gt;<br>
+					&lt;p&gt;<span class="handNote"></span>&lt;/p&gt;<br>
+				  &lt;/handNote&gt;<br>
+			 &lt;/handDesc&gt;<br>
+		&lt;/physDesc&gt;<br>
+			 &lt;history&gt;&lt;provenance&gt; &lt;p&gt;<span class="provenance"></span>&lt;/p&gt;&lt;/provenance&gt;&lt;/history&gt;<br>
+
+			   &lt;/msDesc&gt;<br>-->
+			  &lt;/sourceDesc&gt;<br>
+
+			&lt;/fileDesc&gt;<br>
+			
+			&lt;profileDesc&gt;<br>
+			  &lt;langUsage&gt;<br>
+				&lt;language&gt;<span class="language"></span>&lt;/language&gt;<br>
+			  &lt;/langUsage&gt;<br>
+			&lt;/profileDesc&gt;<br>
+			
+		  &lt;/teiHeader&gt;<br>
+		  <br>
+		<button class="ssi-button success hidden2">Go Back to Edit</button>
+		
+		<button class="ssi-button success hidden3">Upload Document</button>
+		</div>
+
+  <!-- -->
+	    </div> <!-- #tab-content3 -->
+
+	</div> <!-- .tabs -->
+
+</div>
+
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="footer-branding">
+					<img class="footer-branding-logo" src="../../../../../../img/iu_logo.png" alt="IU logo">
+					<p><a href="https://www.iu.edu/copyright/index.html">Copyright</a> © 2016 The Trustees of <a href="https://www.iu.edu/">Indiana University</a></p>
+				</div>
+				<div class="footer-branding">
+					<img class="humanities-logo" src="../../../../../../img/Humanities.png" alt="Humanities logo">
+				</div>
+				
+				<div class="footer-nav">
+					<ul class="footer-primary-nav">
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#intro">About Us</a></li>
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#">Terms & Conditions</mark></a></li>
+						<li><a href="http://liberalarts.iupui.edu/privacy/" target="_blank">Privacy Policy</a></li>
+						<li><a href="http://www.iupui.edu/~stepiat/platform/#articles">Contact Us</a></li>
+						<li><a href="#">FAQs</a></li>
+					</ul>
+				</div>
+			</div>
+			
+		</div>
+	</footer>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
+
+<!-- file upload related -->
+
+<script src="../../../../../../sites/all/libraries/step/js/file_upload/ssi-uploader.js"></script>
+
+<script>
+    var notifyOptions = {
+        iconButtons: {
+            className: 'fa fa-question about',
+            method: function (e, modal) {
+                ssi_modal.closeAll('notify');
+                var btn = $(this).addClass('disabled');
+                ssi_modal.dialog({
+                    onClose: function () {
+                        btn.removeClass('disabled')
+                    },
+                    onShow: function () {
+                    },
+                    okBtn: {className: 'btn btn-primary btn-sm'},
+                    title: 'ssi-modal',
+                    content: '',
+                    sizeClass: 'small',
+                    animation: true
+                });
+            }
+        }
+    };
+    $('#ssi-upload').ssi_uploader({
+        url: 'uploadAction.php',
+        maxFileSize: 6,
+        allowed: ['jpg', 'gif', 'txt', 'png', 'pdf']
+    });
+    $('#ssi-upload3').ssi_uploader({url: 'uploadAction.php', dropZone: false});
+    $('#ssi-upload4').ssi_uploader({url: 'uplodadAction.php', dropZone: false, allowed: ["pdf"]});
+</script>
+	
+</body>
+</html>

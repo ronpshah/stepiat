@@ -1,0 +1,24 @@
+{
+    "entities":[
+    {
+        "entity":{
+            "title":"Less Than",
+            "Value":"&lt;",
+            "Visual":"<"
+        }
+    },
+    {
+        "entity":{
+            "title":"Greater Than",
+            "Value":"&gt;",
+            "Visual":">"
+        }
+    },
+    {
+        "entity":{
+            "title":"Test",
+            "Value":"test",
+            "Visual":"test"
+        }
+    }]
+}

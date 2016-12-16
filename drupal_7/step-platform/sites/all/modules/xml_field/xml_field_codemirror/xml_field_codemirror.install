@@ -1,0 +1,43 @@
+
+<?php
+/**
+ * @file
+ * Handles installation steps for xml_field_codemirror
+ *
+ * @ingroup func_search
+ * @{
+ */
+
+/**
+ * Implements hook_requirements().
+ *
+ * Checks installation requirements and do status reporting.
+ * http://api.drupal.org/api/function/hook_requirements
+ *
+ * @param phase 'install' or 'runtime':
+ * @return A keyed array of requirements
+ */
+function xml_field_codemirror_requirements($phase) {
+  $reqs = array();
+  $t = get_t();
+  if ($phase == 'runtime') {
+    $info = libraries_detect('codemirror');
+    $reqs['xml_field_codemirror'] = array(
+      'title' => check_plain($info['name']),
+      'value' => check_plain($info['version']),
+      'description' => $t('Successfully loaded library from %path', array(
+        '%path' => libraries_get_path('codemirror'),
+      )),
+      'severity' => REQUIREMENT_OK,
+      );
+    if (!$info['installed']) {
+      $reqs['xml_field_codemirror']['title'] = $t('Code Mirror');
+      $reqs['xml_field_codemirror']['value'] = $t('Not Found!');
+      $reqs['xml_field_codemirror']['description'] = $t('The Code Mirror library is missing; see README for installation instructions.');
+      $reqs['xml_field_codemirror']['severity'] = REQUIREMENT_ERROR;
+    }
+  }
+  return $reqs;
+}
+
+/** @} */ //end of group xml_field_codemirror

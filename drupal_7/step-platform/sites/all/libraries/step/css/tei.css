@@ -1,0 +1,1057 @@
+/* =============================================================
+    CSS2 specification for TEI in oXygen.
+ derived from stylesheet by
+    Author: Adrian Edwards (adrian_edwards@yahoo.com)
+    Date:   2000-04-19
+ edited by Sebastian Rahtz (sebastian.rahtz@oucs.ox.ac.uk)
+            2001-05-06
+ 2003-08-29 start of new parent div resets child auto-count. kl
+ 2003-11-06 list attr list-style-type was none, now disc. kl
+ 2007-06  reworking for TEI P5 and oxygen
+
+$LastChangedDate$, $LastChangedRevision$, $LastChangedBy$
+============================================================= */
+/* Use Times New Roman for default font */
+ #XMLfromCM  TEI {
+	font-family: Times-Roman, serif;
+} #XMLfromCM 
+abbr {
+  display: inline;
+} #XMLfromCM 
+add {
+  display: inline;
+  color: green;
+  background-color: inherit;
+  text-decoration: underline;
+} #XMLfromCM 
+address {
+  display: block;
+  margin-top: 2em;
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-bottom: 2em;
+} #XMLfromCM 
+addrLine {
+  display: block;
+  white-space: nowrap;
+} #XMLfromCM 
+anchor {
+  display: none;
+} #XMLfromCM 
+argument {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+att {
+  display: inline;
+  font-family: sans-serif;
+  color: blue;
+  background-color: inherit;
+} #XMLfromCM 
+att:before {
+  content: "@";
+} #XMLfromCM 
+author {
+  display: inline;
+} #XMLfromCM 
+    
+back {
+  display: block;
+  border: thin black solid;
+  margin-top: 1em;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+} #XMLfromCM 
+bibl {
+  display: inline;
+} #XMLfromCM 
+    
+argument > bibl, body > bibl, cit > bibl, div > bibl, div0 > bibl, div1 > bibl, div2 > bibl, div3 > bibl, div4 > bibl, div5 > bibl, div6 > bibl, div7 > bibl, epigraph > bibl, listBibl > bibl > bibl, taxonomy > bibl {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+biblFull {
+  display: inline;
+} #XMLfromCM 
+    
+argument > biblFull, body > biblFull, cit > biblFull, div > biblFull, div0 > biblFull, div1 > biblFull, div2 > biblFull, div3 > biblFull, div4 > biblFull, div5 > biblFull, div6 > biblFull, div7 > biblFull, epigraph > biblFull, listBibl > biblFull > biblFull, taxonomy > biblFull {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+biblScope {
+  display: inline;
+} #XMLfromCM 
+    
+imprint > biblScope {
+  display: block;
+} #XMLfromCM 
+    
+body {
+  font-family: serif;
+  margin-top: 5px;
+  margin-left: 10px;
+  display: block;
+  counter-reset: div1;
+
+} #XMLfromCM 
+byline {
+  display: block;
+  font-style: italic;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+category {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+catRef {
+  display: none;
+} #XMLfromCM 
+cell {
+  display: table-cell;
+  border: 1px solid #EEEFEE;
+  padding: 3px;
+  color: inherit;
+  background-color:inherit;
+} #XMLfromCM 
+cell[role='label'] {
+   color: inherit;
+   background-color: #BBBBBB;
+} #XMLfromCM 
+change {
+  display: block;
+  margin-bottom: 1em;
+  margin-left: 2em;
+} #XMLfromCM 
+cit {
+  display: inline;
+} #XMLfromCM 
+    
+argument > cit, body > cit, div > cit, div0 > cit, div1 > cit, div2 > cit, div3 > cit, div4 > cit, div5 > cit, div6 > cit, div7 > cit, epigraph > cit {
+  display: block;
+  margin-bottom: 0.5em;
+  margin-top: 0.5em;
+} #XMLfromCM 
+classCode {
+  display: block;
+} #XMLfromCM 
+elementSpec, macroSpec, classSpec {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+closer {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+code {
+  display: inline;
+  font-family: monospace;
+} #XMLfromCM 
+corr {
+  display: inline;
+  color: green;
+  background-color: inherit;
+} #XMLfromCM 
+creation {
+  display: block;
+} #XMLfromCM 
+date {
+  display: inline;
+} #XMLfromCM 
+    
+change > date, publicationStmt > date {
+  display: block;
+  font-weight: bold;
+} #XMLfromCM 
+dateline {
+  display: inline;
+} #XMLfromCM 
+del {
+  display: inline;
+  color: red;
+  background-color: inherit;
+  text-decoration: line-through;
+} #XMLfromCM 
+distributor {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+body > div {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div1;
+  counter-reset: div2;
+} #XMLfromCM 
+body > div > div {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div2;
+  counter-reset: div3;
+} #XMLfromCM 
+body > div > div > div {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div3;
+} #XMLfromCM 
+div1 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div1;
+  counter-reset: div2;
+} #XMLfromCM 
+div2 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div2;
+  counter-reset: div3;
+} #XMLfromCM 
+div3 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div3;
+  counter-reset: div4;
+} #XMLfromCM 
+div4 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div4;
+  counter-reset: div5;
+} #XMLfromCM 
+div5 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div5;
+  counter-reset: div6;
+} #XMLfromCM 
+div6 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div6;
+  counter-reset: div7;
+} #XMLfromCM 
+div7 {
+  display: block;
+  margin-bottom: 1em;
+  counter-increment: div7;
+} #XMLfromCM 
+divGen {
+  display: none;
+} #XMLfromCM 
+docAuthor {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+    
+byline docAuthor {
+  display: inline;
+} #XMLfromCM 
+    
+titlePage docAuthor {
+
+} #XMLfromCM 
+    
+titlePage docTitle {
+
+} #XMLfromCM 
+    
+edition {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+    
+bibl edition {
+  display: inline;
+} #XMLfromCM 
+    
+editionStmt {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+editor {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+    
+bibl editor {
+  display: inline;
+} #XMLfromCM 
+    
+eg {
+  font-family: monospace;
+  padding-top: 3mm;
+  padding-left: 4pt;
+  padding-bottom: 2pt;
+  display: block;
+  margin-top: 12pt;
+  margin-bottom: 12pt;
+  white-space: pre;
+  color: inherit;
+  background-color: #FFCC99;
+} #XMLfromCM 
+    
+argument > eg, body > eg, div > eg, div0 > eg, div1 > eg, div2 > eg, div3 > eg, div4 > eg, div5 > eg, div6 > eg, div7 > eg, epigraph > eg {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+emph {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+epigraph {
+  display: block;
+  margin-bottom: 1em;
+  text-align: center;
+} #XMLfromCM 
+    
+extent {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+    
+bibl extent {
+  display: inline;
+} #XMLfromCM 
+ 
+graphic{
+    color: gray;
+    background-color: inherit;
+    content: "{" attr(url) "} #XMLfromCM ";    
+} #XMLfromCM 
+figure {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+foreign {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+formula {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+front {
+  display: block;
+  margin-bottom: 1em;
+  padding-top: 0.5em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-bottom: 0.5em;
+} #XMLfromCM 
+funder {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+gap {
+  display: none;
+} #XMLfromCM 
+    
+gap:after {
+  content: "[...]";
+  font-style: italic;
+} #XMLfromCM 
+gi,tag {
+  display: inline;
+  font-family: sans-serif;
+  color: blue;
+  background-color: inherit;
+} #XMLfromCM 
+    
+tag:before,gi:before {
+  content: "<";
+} #XMLfromCM 
+    
+tag:after,gi:after {
+  content: ">";
+} #XMLfromCM 
+    
+gloss {
+  display: inline;
+} #XMLfromCM 
+group {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+body > div > head {
+  display: block;
+  font-size: larger;
+  padding-top: 14px;
+  padding-left: 10px;
+  padding-bottom: 10px;
+  color: inherit;
+  background-color: #BBBBBB;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+} #XMLfromCM 
+body > div > div > head {
+  display: block;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  color: inherit;
+  background-color: #BBBBBB;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+} #XMLfromCM 
+body > div > div > div > head {
+  display: block;
+  padding-top: 14px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  color: inherit;
+  background-color: #BBBBBB;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+} #XMLfromCM 
+div1 > head:before {
+  content: counter(div1) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+div2 > head:before {
+  content: counter(div1) "." counter(div2) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+div3 > head:before {
+  content: counter(div1) "." counter(div2) "." counter(div3) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+body > div > head:before {
+  content: counter(div1) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+body > div > div > head:before {
+  content: counter(div1) "." counter(div2) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+body > div > div > div > head:before {
+  content: counter(div1) "." counter(div2) "." counter(div3) ". ";
+  color: black;
+  background-color: inherit;
+} #XMLfromCM 
+hi {
+  display: inline;
+  background-color:yellow;
+  color: black;
+} #XMLfromCM 
+
+hi[rend] {
+  background-color: inherit;
+  color: inherit;
+} #XMLfromCM 
+    
+hi[rend="bold"] {
+  display: inline;
+  font-weight: bold;
+} #XMLfromCM 
+hi[rend="italic"] {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+hi[rend="it"] {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+hi[rend="sc"] {
+  display: inline;
+  font-variant: small-caps;
+} #XMLfromCM 
+hi[rend="sup"] {
+  display: inline;
+  vertical-align: super;
+  font-size: smaller;
+} #XMLfromCM 
+hi[rend="sub"] {
+  display: inline;
+  vertical-align: sub;
+  font-size: smaller;
+} #XMLfromCM 
+hi[rend="ul"] {
+  display: inline;
+  text-decoration: underline;
+} #XMLfromCM 
+ident {
+  display: inline;
+  font-family: monospace;
+} #XMLfromCM 
+idno {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+    
+bibl idno {
+  display: inline;
+} #XMLfromCM 
+        
+imprint {
+  display: inline;
+} #XMLfromCM 
+index {
+  display: none;
+} #XMLfromCM 
+interp {
+  display: none;
+} #XMLfromCM 
+interpGrp {
+  display: none;
+} #XMLfromCM 
+list[type = "gloss"] item {
+  display: block;
+  margin-left: 1em;
+} #XMLfromCM 
+list item {
+  display: list-item;
+  margin-left: 12pt;
+} #XMLfromCM 
+    
+    
+item {
+  display: list-item;
+  margin-left: 12pt;
+} #XMLfromCM 
+    
+item[n]:before {
+  content: attr(n) ". " ;
+  list-style: none;
+} #XMLfromCM  /* should there be space after the content?
+     And should default marker be suppressed
+     when there is an @n attribute? --DRS */
+    
+change item {
+  display: block;
+  margin-bottom: 0.5em;
+  margin-left: 1em;
+  margin-top: 0.5em;
+} #XMLfromCM 
+keywords {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+kw {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+l {
+  display: block;
+  white-space: nowrap;
+} #XMLfromCM 
+label {
+  display: inline;
+  font-weight: bold;
+} #XMLfromCM 
+Label {
+	display: inline;
+	font-weight : bold;
+	color : #2F4F4F;
+           background-color: inherit;
+} #XMLfromCM 
+    
+argument > label, body > label, div > label, div0 > label, div1 > label, div2 > label, div3 > label, div4 > label, div5 > label, div6 > label, div7 > label, epigraph > label {
+  display: block;
+  font-weight: bold;
+} #XMLfromCM 
+langUsage {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+lb {
+  display: block;
+} #XMLfromCM 
+lg {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+list {
+  display: block;
+  list-style-type: disc;
+  list-style-position: outside;
+  margin-bottom: 1em;
+  margin-left: 2em;
+  margin-top: 1em;
+} #XMLfromCM 
+    
+list[rend="runon"] {
+  display: inline;
+} #XMLfromCM 
+    
+list[type="bulleted"] {
+  list-style-type: disc;
+  list-style-position: outside;
+} #XMLfromCM 
+list[type="unordered"] {
+  list-style-type: disc;
+  list-style-position: outside;
+} #XMLfromCM 
+list[type="ordered"] {
+  list-style-type: decimal;
+  list-style-position: outside;
+} #XMLfromCM 
+    
+list[type="numbered"] {
+  list-style-type: decimal;
+  list-style-position: outside;
+} #XMLfromCM 
+list[type="none"] {
+  list-style-type: none;
+} #XMLfromCM 
+    
+listBibl {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+mentioned {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+milestone {
+  display: none;
+} #XMLfromCM 
+name {
+  display: inline;
+} #XMLfromCM 
+note {
+  display: block;
+  font-size: smaller;
+} #XMLfromCM 
+    
+note[n]:before {
+  content: attr(n);
+  vertical-align: super;
+} #XMLfromCM 
+    
+note[place="left"] {
+  float: left;
+} #XMLfromCM 
+    
+note[place="right"] {
+  float: right;
+} #XMLfromCM 
+    
+note[place="inline"], note[place="unspecified"] {
+  display: inline;
+} #XMLfromCM 
+notesStmt {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+num {
+  display: inline;
+} #XMLfromCM 
+opener {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+orig {
+  display: inline;
+} #XMLfromCM 
+p {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+pb {
+  display: none;
+} #XMLfromCM 
+    
+pb:after {
+  content: attr(n);
+  font-weight: bold;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  text-align: center;
+} #XMLfromCM 
+    
+principal {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+ptr {
+    color: navy;
+    text-decoration: underline;
+    background-color: inherit;
+} #XMLfromCM 
+ptr:before{
+    background-color: inherit;
+    color: red;
+    content:"[" attr(target) "]";
+} #XMLfromCM 
+
+publicationStmt {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+publisher {
+  display: inline;
+} #XMLfromCM 
+    
+imprint > publisher, publicationStmt > publisher {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+pubPlace {
+  display: inline;
+} #XMLfromCM 
+    
+imprint > pubPlace, publicationStmt > pubPlace {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+q {
+  display: inline;
+  quotes: '"' '"' "'" "'";
+  margin-top: 0em;
+  margin-left: 0em;
+  margin-right: 0em;
+  margin-bottom: 0em;
+} #XMLfromCM 
+    
+q[rend="display"], argument > q, body > q, cit > q, div > q, div0 > q, div1 > q, div2 > q, div3 > q, div4 > q, div5 > q, div6 > q, div7 > q, epigraph > q {
+  display: block;
+  margin-bottom: 0.5em;
+  margin-left: 3em;
+  margin-right: 3em;
+  quotes: none;
+} #XMLfromCM 
+    
+q:before {
+  content: open-quote;
+} #XMLfromCM 
+    
+q:after {
+  content: close-quote;
+} #XMLfromCM 
+    
+ref {
+  display: inline;
+  color: blue;
+  background-color: inherit;
+} #XMLfromCM 
+ref:before{
+    color: gray;
+    background-color: inherit;
+    text-decoration: underline;
+    content:'{' attr(target) '} #XMLfromCM ';
+} #XMLfromCM 
+
+reg {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+rendition {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+resp {
+  display: inline;
+} #XMLfromCM 
+respStmt {
+  display: block;
+} #XMLfromCM 
+    
+bibl respStmt {
+  display: inline;
+} #XMLfromCM 
+    
+rdg:before {
+  background-color: inherit;
+  content: "[" attr(wit) "] ";
+  color: red;
+  } #XMLfromCM 
+row {
+  display: table-row;
+} #XMLfromCM 
+row[role='label'] {
+   color: inherit;
+   background-color: #BBBBBB;
+} #XMLfromCM 
+
+rs {
+  display: inline;
+} #XMLfromCM 
+s {
+  display: inline;
+} #XMLfromCM 
+salute {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+samplingDecl {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+seg {
+  display: inline;
+} #XMLfromCM 
+seriesStmt {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+sic {
+  display: inline;
+  color: red;
+  background-color: inherit;
+} #XMLfromCM 
+    
+sic:after {
+  content: " [sic]";
+} #XMLfromCM 
+signed {
+  display: block;
+  text-align: right;
+} #XMLfromCM 
+soCalled {
+  display: inline;
+  font-style: italic;
+  quotes: "'" "'";
+} #XMLfromCM 
+    
+soCalled:before {
+  content: open-quote;
+} #XMLfromCM 
+    
+soCalled:after {
+  content: close-quote;
+} #XMLfromCM 
+    
+sp {
+  display: block;
+  margin-bottom: 0.5em;
+  margin-left: 2em;
+} #XMLfromCM 
+speaker {
+  display: inline;
+  font-weight: bold;
+} #XMLfromCM 
+sponsor {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+stage {
+  display: inline;
+  font-style: italic;
+} #XMLfromCM 
+table {
+  text-align: center;
+  display: table;
+  margin: 1em
+} #XMLfromCM 
+table > head{
+    display:table-caption;
+    font-style: italic;
+    margin-bottom: 6pt;
+} #XMLfromCM 
+
+tagUsage {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+taxonomy {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+term {
+  font-family: sans-serif;
+  color: blue;
+  background-color: inherit;
+  display: inline;
+} #XMLfromCM 
+textClass {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+time {
+  display: inline;
+} #XMLfromCM 
+title {
+  display: inline;
+} #XMLfromCM 
+    
+seriesStmt > title, titleStmt > title {
+} #XMLfromCM 
+titlePage {
+  display: block;
+  border: thin black solid;
+  margin-bottom: 2em;
+  text-align: center;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+} #XMLfromCM 
+titlePart {
+  display: block;
+} #XMLfromCM 
+titleStmt {
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 1em;
+  text-align: center;
+} #XMLfromCM 
+trailer {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+unclear {
+  display: inline;
+  color: silver;
+  background-color: inherit;
+  font-style: italic;
+} #XMLfromCM 
+/* header-related material */
+teiHeader {
+  display: block;
+  color: silver;
+  background-color: rgb(251, 242, 234);
+  border: solid black 1pt;
+  margin-bottom: 2em;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+} #XMLfromCM 
+titleStmt > author {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+authority {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+availability {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+fileDesc {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+sourceDesc {
+  display: block;
+  border: thin silver solid;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-bottom: 1em;
+} #XMLfromCM 
+revisionDesc {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+catDesc {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+encodingDesc {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+profileDesc {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+projectDesc {
+  display: block;
+  margin-bottom: 1em;
+} #XMLfromCM 
+        
+docDate {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+    
+docImprint docDate {
+  display: inline;
+} #XMLfromCM 
+    
+docEdition {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+docImprint {
+  display: block;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+docTitle {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+} #XMLfromCM 
+
+/* OUCS additions */
+Button {
+	  font-family: monospace;
+	  color: red;
+	  font-weight: bold;
+	  background-color: rgb(75%,75%,75%)
+	  } #XMLfromCM 
+Value {
+	  font-family: monospace;
+	  color: rgb(255, 102, 0);
+	  background-color: inherit;
+	  } #XMLfromCM 
+Code {
+	  font-family: monospace;
+	  color: red;
+	  background-color: inherit;
+	  } #XMLfromCM 
+Field {
+	   font-family: monospace;
+	   color: red;
+	   background-color: inherit;
+	   } #XMLfromCM 
+Filespec {
+	      font-family: monospace;
+	      color: red;
+	      background-color: inherit;
+	      } #XMLfromCM 
+Input {
+	   font-family: monospace;
+	   color: green;
+	   background-color: inherit;
+	   } #XMLfromCM 
+Key {
+	 font-family: monospace;
+         text-decoration: underline;
+	 color: green;
+	 background-color: inherit;
+	 } #XMLfromCM 
+Link {
+	  font-family: monospace;
+	  color: green;
+	  background-color: inherit;
+	  text-decoration: underline;
+	  } #XMLfromCM 
+Menu {
+	  font-family: monospace;
+	  color: red;
+	  background-color: inherit;
+	  } #XMLfromCM 
+Output {
+	    font-family: monospace;
+	    color: red;
+	    background-color: inherit;
+	    } #XMLfromCM 
+Icon {
+	color: inherit;
+	background-color : #B0E0E6;
+	font-weight : bold;
+} #XMLfromCM 
+Screen {
+  font-family: monospace;
+  padding-top: 3mm;
+  padding-left: 4pt;
+  padding-bottom: 2pt;
+  display: block;
+  margin-top: 12pt;
+  margin-bottom: 12pt;
+  white-space: pre;
+  color: inherit;
+  background-color: #FFCC99;
+   }

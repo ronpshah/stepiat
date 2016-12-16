@@ -1,0 +1,14 @@
+name = XML Field
+description = Defines an xml field type.
+package = Fields
+core = 7.x
+version = 7.x-1.6
+
+files[] = xml_field.test
+
+; Information added by drupal.org packaging script on 2013-03-29
+version = "7.x-1.6"
+core = "7.x"
+project = "xml_field"
+datestamp = "1364517318"
+

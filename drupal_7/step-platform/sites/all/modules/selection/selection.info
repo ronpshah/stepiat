@@ -1,0 +1,3 @@
+name = Selections for STEP
+description = Module that processes functions for selections inside STEP.
+core = 7.x

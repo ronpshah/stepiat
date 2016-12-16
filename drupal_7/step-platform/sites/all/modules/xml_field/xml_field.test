@@ -1,0 +1,463 @@
+<?php
+/**
+ * @file
+ * Tests for xml_field.module.
+ */
+
+/**
+ * Unit Tests for the xml_field.
+ */
+class XMLFieldUnitTest extends DrupalUnitTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'XML Field Unit Tests',
+      'description' => 'unit testing on import units',
+      'group' => 'XML Field',
+    );
+  }
+
+
+  function setUp() {
+    //As a unit test there is nothing to send to the parent as an arg
+    parent::setUp();
+  }
+
+  /**
+   * Test collision of same sort value
+   */
+  public function testSortDuplicates() {
+    $_control_subject = <<<EOD
+<list>
+  <milk sort="3"></milk>
+  <bread sort="2"></bread>
+  <eggs sort="2"></eggs>
+</list>
+EOD;
+
+    /**
+     * ASSERT
+     *
+     * Assert the duplicate sort values don't elimate the duplicates
+     */
+    $_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = 3;
+    // The test and result
+    $return = xml_field_sort($_control_subject);
+    $result = count($return->children());
+    $this->assertIdentical($control, $result, "Assert the duplicate sort values don't elimate the duplicates.", $_control_group);
+    /**
+     * END ASSERT
+     */
+  }
+
+  /**
+   * Import functions
+   */
+  public function testSorting() {
+    $_control_subject = <<<EOD
+<family surname="Robinson">
+  <parent age="38">Dad</parent>
+  <parent age="35">Mom</parent>
+  <children>
+    <child birthorder="12" weight="90">Fritz</child>
+    <child birthorder="6" weight="100">Francis</child>
+    <child birthorder="7" weight="75">Ernst</child>
+  </children>
+</family>
+EOD;
+
+    //$this->assert(TRUE, xml_field_format($_control_subject, array(
+    //  'htmlentities' => TRUE,
+    //)), 'xml_field_sort');
+
+    /**
+     * ASSERT
+     *
+     * Assert non-existant selector returns FALSE
+     */
+    $_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = FALSE;
+    // The test and result
+    $result = xml_field_sort($_control_subject, 'pizza');
+
+    $this->assertEqual($control, $result, "Assert non-existant selector returns FALSE", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert non-existant attribute returns FALSE
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = FALSE;
+    // The test and result
+    $result = xml_field_sort($_control_subject, 'children', 'hair_color');
+    $this->assertEqual($control, $result, "Assert non-existant attribute returns FALSE", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert the root node doesn't loose it's attributes
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = array(
+      'surname' => 'Robinson',
+    );
+    // The test and result
+    $return = xml_field_sort($_control_subject);
+    $result = (array)$return->attributes();
+    $result = $result['@attributes'];
+    $this->assertIdentical($control, $result, "Assert the root node doesn't loose it's attributes", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert sorting parents puts mom first
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = 'Mom';
+    // The test and result
+    $return = xml_field_sort($_control_subject, NULL, 'age');
+    $result = (string) $return->parent[0];
+    $this->assertEqual($control, $result, "Assert sorting parents puts mom first", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert omitting attribute sorts by weight
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = 'Ernst';
+    // The test and result
+    $return = xml_field_sort($_control_subject, 'children');
+    $result = (string) $return->child[0];
+    $this->assertIdentical($control, $result, "Assert omitting attribute sorts by weight", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert Ernst has all his attributes
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = array(
+      'birthorder' => 7,
+      'weight' => 75,
+    );
+    // The test and result
+    $return = xml_field_sort($_control_subject, 'children');
+    $output = $return->asXML();
+    $result = (array) $return->child[0]->attributes();
+    $result = $result['@attributes'];
+    $result = array_intersect_key($control, $result);
+    $this->assertIdentical($control, $result, "Assert Ernst has all his attributes", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert selector and attribute sorts children by birthorder
+     */
+    //$_control_group = 'xml_field_sort';
+    // Desired test result
+    $control = array(
+      'Francis', 'Ernst', 'Fritz',
+    );
+    // The test and result
+    $return = xml_field_sort($_control_subject, 'children', 'birthorder');
+    $result = array();
+    $result[] = (string)$return->child[0];
+    $result[] = (string)$return->child[1];
+    $result[] = (string)$return->child[2];
+    $this->assertIdentical($control, $result, "Assert selector and attribute sorts children by birthorder", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert xml with one child returns unchanged
+     */
+    $_control_group = 'xml_field_sort';
+    // Desired test result
+    $subject = '<sky><bird type="robin"/></sky>';
+    $control = xml_field_xml($subject);
+    $control = $control->asXML();
+    // The test and result
+    $return = xml_field_sort($subject);
+    $result = $return->asXML();
+    $this->assertEqual($control, $result, "Assert xml with one child returns unchanged", $_control_group);
+    /**
+     * END ASSERT
+     */
+  }
+}
+
+class XMLFieldTestCase extends DrupalWebTestCase {
+
+  public static function getInfo() {
+    return array(
+      'name' => 'XML Field Functional Tests',
+      'description' => 'Tests for the xml_field module',
+      'group' => 'XML Field'
+    );
+  }
+
+
+  /**
+   * Test xml_field_has
+   */
+  public function testHas() {
+
+    $_control_subject = <<<EOD
+<section>
+  <title color="red">The Red Sea</title>
+</section>
+EOD;
+
+
+    /**
+     * ASSERT
+     *
+     * Assert that no XML returns FALSE
+     */
+    $_control_group = 'xml_field_has';
+    // Desired test result
+    $control = FALSE;
+    // The test and result
+    $return = xml_field_has('', '', '');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert that no XML returns FALSE", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert that xml without selector returns false
+     */
+    $_control_group = 'xml_field_has';
+    // Desired test result
+    $control = FALSE;
+    // The test and result
+    $return = xml_field_has($_control_subject, 'subtitle');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert that xml without selector returns false", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert xml with selector, without attribute returns false
+     */
+    $_control_group = 'xml_field_has';
+    // Desired test result
+    $control = FALSE;
+    // The test and result
+    $return = xml_field_has($_control_subject, 'title', 'length');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert xml with selector, without attribute returns false", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert xml with selector returns true
+     */
+    $_control_group = 'xml_field_has';
+    // Desired test result
+    $control = TRUE;
+    // The test and result
+    $return = xml_field_has($_control_subject, 'title');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert xml with selector returns true", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert XML with selector with attribute returns true
+     */
+    $_control_group = 'xml_field_has';
+    // Desired test result
+    $control = TRUE;
+    // The test and result
+    $return = xml_field_has($_control_subject, 'title', 'color');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert XML with selector with attribute returns true", $_control_group);
+    /**
+     * END ASSERT
+     */
+  }
+
+  /**
+   * Testing the function xml_field()
+   */
+  public function testXMLFieldFunction() {
+    /**
+     * ASSERT
+     *
+     * Assert empty xml with FALSE callback returns the default string unprocessed
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = "Aaron's <em>birthday</em> is in <big>August</big>";
+    $control = $subject;
+    // The test and result
+    $return = xml_field('', NULL, NULL, $subject, FALSE);
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert empty xml with FALSE callback returns the default string unprocessed", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert empty xml with no callback returns check_plain version of $default
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = "Aaron's <em>birthday</em> is in <big>August</big>";
+    $control = check_plain($subject);
+    // The test and result
+    $return = xml_field('', NULL, NULL, $subject);
+    $result = $return;
+    $this->assertIdentical($control, $result, 'Assert empty xml with no callback returns check_plain version of $default', $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert custom callback with arguments works correctly
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = 'GOP PONDERS CEDING POWER TO OBAMA';
+    $control = 'GOP PONDERS CEDING POWER TO OB';
+    // The test and result
+    $return = xml_field('', NULL, NULL, $subject, array('trim', 'AM'));
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert custom callback with arguments works correctly", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert valid xml, no selector, no attribute, no default returns an empty string
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = '<big>';
+    $control = check_plain($subject);
+    // The test and result
+    $return = xml_field("<book><page>Aaron's Book</page></book>", NULL, NULL, $subject);
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert valid xml, no selector, no attribute, no default returns an empty string", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert valid xml, no selector, no attribute, returns the default
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $control = '';
+    // The test and result
+    $return = xml_field("<book><page>Aaron's Book</page></book>");
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert valid xml, no selector, no attribute, returns the default", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert attribute is returned from parent when no selector is used
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = '<xml location="library"><book id="1">The Bible</book></xml>';
+    $control = 'library';
+    // The test and result
+    $return = xml_field($subject, NULL, 'location');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert attribute is returned from parent when no selector is used", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert attribute is returned from child when selector is used
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = '<xml location="library"><book id="456">The Bible</book></xml>';
+    $control = '456';
+    // The test and result
+    $return = xml_field($subject, 'book', 'id');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert attribute is returned from child when selector is used", $_control_group);
+    /**
+     * END ASSERT
+     */
+
+    /**
+     * ASSERT
+     *
+     * Assert value is returned from child when selector is used
+     */
+    $_control_group = 'xml_field';
+    // Desired test result
+    $subject = '<xml location="library"><book id="456">The Bible</book></xml>';
+    $control = 'The Bible';
+    // The test and result
+    $return = xml_field($subject, 'book');
+    $result = $return;
+    $this->assertIdentical($control, $result, "Assert value is returned from child when selector is used", $_control_group);
+    /**
+     * END ASSERT
+     */
+  }
+}
