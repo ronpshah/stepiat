@@ -1,5 +1,5 @@
-#H1 STEP (Scholarly Text-Editing Platform)
-#H3 How to Access a Transcription Document (STEP)?
+# STEP (Scholarly Text-Editing Platform)
+# How to Access a Transcription Document (STEP)?
 
 Three pathways are available for your exploration: one leads to the platform, and two lead to documentation about two STEP applications. Several companion applications, called STEP Tools, are being developed to facilitate and strengthen STEP's usability, although all can be used independently as well. They work on both the Mac and Windows platforms. Some of their key functionalities will be made eventually available through web applications inside the platform.
 
