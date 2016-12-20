@@ -9,4 +9,4 @@ Three pathways are available for your exploration: one leads to the platform, an
 
 Be aware that this demo site is under constant development. Interface design and appearance keep improving all the time. Other STEP Tools in the works include STEP Image Viewer, STEP Emendator, STEP Annotator, and STEP Formulator.
 
-[Demo Site] (http://www.iupui.edu/~stepiat) 
+[Demo Site] (http://step-iat.iupui.edu/platform) 
